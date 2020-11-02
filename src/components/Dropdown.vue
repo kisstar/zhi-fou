@@ -1,10 +1,10 @@
 <template>
-  <div class="dropdown">
+  <div class="dropdown" ref="dropdownRef">
     <button
       class="btn dropdown-toggle"
       type="button"
       v-text="title"
-      @click="toggleOpen"
+      @click.prevent="toggleOpen"
     />
     <ul :class="{ 'dropdown-menu': true, show: isOpen }">
       <slot />
@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, onMounted, onUnmounted, ref } from "vue";
 
 export default defineComponent({
   name: "Dropdown",
@@ -29,9 +29,34 @@ export default defineComponent({
       isOpen.value = !isOpen.value;
     };
 
+    const dropdownRef = ref<null | HTMLElement>(null);
+    const handler = (event: MouseEvent) => {
+      console.log("1", dropdownRef.value);
+      console.log("2", event.target);
+
+      if (!dropdownRef.value) {
+        return;
+      }
+      if (
+        !dropdownRef.value.contains(event.target as HTMLElement) &&
+        isOpen.value
+      ) {
+        isOpen.value = false;
+      }
+    };
+
+    onMounted(() => {
+      document.addEventListener("click", handler);
+    });
+
+    onUnmounted(() => {
+      document.removeEventListener("click", handler);
+    });
+
     return {
       isOpen,
-      toggleOpen
+      toggleOpen,
+      dropdownRef
     };
   }
 });
