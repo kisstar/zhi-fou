@@ -1,13 +1,20 @@
 <template>
   <div class="container">
-    <column-list :list="list"></column-list>
+    <global-header :user="currentUser" />
+    <column-list :list="list" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import GlobalHeader, { UserProps } from "./components/GlobalHeader.vue";
 import ColumnList, { ColumnProps } from "./components/ColumnList.vue";
 
+const currentUser: UserProps = {
+  id: 1,
+  name: "Kisstar",
+  isLogin: false
+};
 const testData: ColumnProps[] = Array(5)
   .fill(null)
   .map((_, index) => ({
@@ -20,10 +27,12 @@ const testData: ColumnProps[] = Array(5)
 export default defineComponent({
   name: "App",
   components: {
+    GlobalHeader,
     ColumnList
   },
   setup() {
     return {
+      currentUser,
       list: testData
     };
   }
