@@ -13,7 +13,7 @@ import ColumnList, { ColumnProps } from "./components/ColumnList.vue";
 const currentUser: UserProps = {
   id: 1,
   name: "Kisstar",
-  isLogin: false
+  isLogin: true
 };
 const testData: ColumnProps[] = Array(5)
   .fill(null)
