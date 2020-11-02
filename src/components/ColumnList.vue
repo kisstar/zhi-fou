@@ -1,21 +1,34 @@
 <template>
-  <ul>
-    <li v-for="column in list" :key="column.id">
-      <img :src="column.avatar" :alt="column.title" width="50" height="50" />
-      <h5 v-text="column.title"></h5>
-      <p v-text="column.description"></p>
-      <a href="#">进入专栏</a>
-    </li>
-  </ul>
+  <div class="row">
+    <div class="col-4 mb-3" v-for="column in resultList" :key="column.id">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <img
+            class="my-3 rounded-circle"
+            :src="column.avatar"
+            :alt="column.title"
+            width="50"
+            height="50"
+          />
+          <h5 class="card-title text-truncate" v-text="column.title"></h5>
+          <p
+            class="card-text text-left text-secondary"
+            v-text="column.description"
+          ></p>
+          <a class="btn btn-outline-primary" href="#">进入专栏</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, computed, PropType } from "vue";
 
 export interface ColumnProps {
   id: number;
   title: string;
-  avatar: string;
+  avatar?: string;
   description: string;
 }
 
@@ -26,8 +39,20 @@ export default defineComponent({
       type: Array as PropType<ColumnProps[]>,
       required: true
     }
+  },
+  setup(props) {
+    const resultList = computed(() => {
+      return props.list.map(item => {
+        if (!item.avatar) {
+          item.avatar = require("@/assets/images/column-avatar.jpg");
+        }
+        return item;
+      });
+    });
+
+    return {
+      resultList
+    };
   }
 });
 </script>
-
-<style lang="scss"></style>

@@ -8,14 +8,14 @@
 import { defineComponent } from "vue";
 import ColumnList, { ColumnProps } from "./components/ColumnList.vue";
 
-const testData: ColumnProps[] = [
-  {
-    id: 1,
-    title: "test1的标题",
-    avatar: "http://www.dmoe.cc/random.php",
-    description: "这是用来测试的专栏，有一段非常有意思的简介，欢迎阅读和编辑哦"
-  }
-];
+const testData: ColumnProps[] = Array(5)
+  .fill(null)
+  .map((_, index) => ({
+    id: index,
+    title: `test${index}的标题`,
+    avatar: index === 3 ? "" : "http://www.dmoe.cc/random.php",
+    description: `这是test${index}的专栏，有一段非常有意思的简介，欢迎阅读和编辑哦`
+  }));
 
 export default defineComponent({
   name: "App",
