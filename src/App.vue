@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid d-flex flex-column px-0">
     <global-header :user="currentUser" />
     <validate-form @submit="onSubmit">
       <validate-input
@@ -20,12 +20,14 @@
         v-model="passwordValue"
       />
     </validate-form>
+    <global-footer />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import GlobalHeader, { UserProps } from "./components/GlobalHeader.vue";
+import GlobalFooter from "./components/GlobalFooter.vue";
 import { ColumnProps } from "./components/ColumnList.vue";
 import ValidateForm from "./components/ValidateForm.vue";
 import ValidateInput, { RuleProps } from "./components/ValidateInput.vue";
@@ -55,6 +57,7 @@ export default defineComponent({
   name: "App",
   components: {
     GlobalHeader,
+    GlobalFooter,
     ValidateForm,
     ValidateInput
   },
@@ -77,3 +80,12 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss">
+html,
+body,
+#app,
+.container-fluid {
+  min-height: 100vh;
+}
+</style>
