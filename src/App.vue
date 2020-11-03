@@ -14,7 +14,7 @@ import GlobalFooter from "./components/GlobalFooter.vue";
 const currentUser: UserProps = {
   id: 1,
   name: "Kisstar",
-  isLogin: true
+  isLogin: false
 };
 
 export default defineComponent({
