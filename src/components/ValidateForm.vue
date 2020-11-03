@@ -12,10 +12,7 @@
 <script lang="ts">
 import { defineComponent, onUnmounted } from "vue";
 import { getEmitter } from "@/lib/mitt";
-
-export interface ValidateFunction {
-  (): boolean;
-}
+import { ValidateFunction } from "@/types/interface";
 
 export const formEmitter = getEmitter();
 

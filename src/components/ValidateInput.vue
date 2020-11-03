@@ -21,13 +21,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, PropType, reactive } from "vue";
 import { formEmitter } from "./ValidateForm.vue";
-
-export interface RuleInfo {
-  type: "required" | "email";
-  message: string;
-}
-
-export type RuleProps = RuleInfo[];
+import { RuleInfo } from "@/types/interface";
 
 export default defineComponent({
   name: "ValidateInput",
@@ -42,7 +36,7 @@ export default defineComponent({
     },
     modelValue: String,
     rules: {
-      type: Array as PropType<RuleProps>,
+      type: Array as PropType<RuleInfo[]>,
       default: []
     }
   },

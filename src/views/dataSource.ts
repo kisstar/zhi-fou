@@ -1,21 +1,7 @@
+import { ColumnProps, PostInfo } from "@/types/interface";
+
 function getRndInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-export interface ColumnProps {
-  id: number;
-  title: string;
-  avatar?: string;
-  description: string;
-}
-
-export interface PostInfo {
-  id: number;
-  title: string;
-  content: string;
-  image?: string;
-  createdAt: string;
-  columnId: number;
 }
 
 export const columnList: ColumnProps[] = Array(5)

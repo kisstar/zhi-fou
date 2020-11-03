@@ -26,13 +26,14 @@
 import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import ValidateForm from "../components/ValidateForm.vue";
-import ValidateInput, { RuleProps } from "../components/ValidateInput.vue";
+import ValidateInput from "../components/ValidateInput.vue";
+import { RuleInfo } from "@/types/interface";
 
-const emailRules: RuleProps = [
+const emailRules: RuleInfo[] = [
   { type: "required", message: "电子邮箱地址不能为空" },
   { type: "email", message: "请输入正确的电子邮箱格式" }
 ];
-const passwordRules: RuleProps = [
+const passwordRules: RuleInfo[] = [
   { type: "required", message: "密码不能为空" }
 ];
 

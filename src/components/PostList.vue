@@ -21,24 +21,14 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-
-export interface PostInfo {
-  id: number;
-  title: string;
-  content: string;
-  image?: string;
-  createdAt: string;
-  columnId: number;
-}
-
-export type PostProps = PostInfo[];
+import { PostInfo } from "@/types/interface";
 
 export default defineComponent({
   name: "PostList",
   props: {
     list: {
       required: true,
-      type: Array as PropType<PostProps>
+      type: Array as PropType<PostInfo[]>
     }
   }
 });
