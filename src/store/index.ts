@@ -11,6 +11,15 @@ const store = createStore<AppState>({
     columnList,
     postList
   },
+  getters: {
+    getColumnById(state) {
+      return (id: number) => state.columnList.find(item => item.id === id);
+    },
+    getPostByCid(state) {
+      return (Cid: number) =>
+        state.postList.filter(item => item.columnId === Cid);
+    }
+  },
   mutations
 });
 

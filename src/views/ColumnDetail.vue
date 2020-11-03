@@ -36,14 +36,12 @@ export default defineComponent({
     const route = useRoute();
     const store = useStore<AppState>();
     const currentId = +route.params.id;
-    const currentColumn = computed(() => {
-      return store.state.columnList.find(item => item.id === currentId);
-    });
-    const list = computed(() => {
-      return store.state.postList.filter(
-        item => item.columnId === currentColumn.value?.id
-      );
-    });
+    const currentColumn = computed(() =>
+      store.getters.getColumnById(currentId)
+    );
+    const list = computed(() =>
+      store.getters.getPostByCid(currentColumn.value.id)
+    );
 
     return {
       column: currentColumn,
