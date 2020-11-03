@@ -21,10 +21,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import { useRoute } from "vue-router";
+import { useStore } from "vuex";
 import PostList from "@/components/PostList.vue";
-import { columnList, postList } from "./dataSource";
+import { AppState } from "@/types/interface";
 
 export default defineComponent({
   name: "ColumnDetail",
@@ -33,9 +34,16 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute();
+    const store = useStore<AppState>();
     const currentId = +route.params.id;
-    const currentColumn = columnList.find(item => item.id === currentId);
-    const list = postList.filter(item => item.columnId === currentColumn?.id);
+    const currentColumn = computed(() => {
+      return store.state.columnList.find(item => item.id === currentId);
+    });
+    const list = computed(() => {
+      return store.state.postList.filter(
+        item => item.columnId === currentColumn.value?.id
+      );
+    });
 
     return {
       column: currentColumn,

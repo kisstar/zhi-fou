@@ -22,9 +22,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 import ColumnList from "../components/ColumnList.vue";
-import { columnList } from "./dataSource";
+import { AppState } from "@/types/interface";
 
 export default defineComponent({
   name: "Home",
@@ -32,6 +33,9 @@ export default defineComponent({
     ColumnList
   },
   setup() {
+    const store = useStore<AppState>();
+    const columnList = computed(() => store.state.columnList);
+
     return { list: columnList };
   }
 });

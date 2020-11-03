@@ -28,3 +28,9 @@ export interface RuleInfo {
   type: "required" | "email";
   message: string;
 }
+
+export interface AppState {
+  user: UserProps;
+  columnList: ColumnProps[];
+  postList: PostInfo[];
+}

@@ -7,16 +7,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 import GlobalHeader from "./components/GlobalHeader.vue";
 import GlobalFooter from "./components/GlobalFooter.vue";
-import { UserProps } from "@/types/interface";
-
-const currentUser: UserProps = {
-  id: 1,
-  name: "Kisstar",
-  isLogin: false
-};
+import { AppState } from "@/types/interface";
 
 export default defineComponent({
   name: "App",
@@ -25,6 +20,9 @@ export default defineComponent({
     GlobalFooter
   },
   setup() {
+    const store = useStore<AppState>();
+    const currentUser = computed(() => store.state.user);
+
     return {
       currentUser
     };
