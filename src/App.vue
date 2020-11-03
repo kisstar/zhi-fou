@@ -2,21 +2,11 @@
   <div class="container">
     <global-header :user="currentUser" />
     <form>
-      <div class="mb-3">
-        <label for="emailAddress" class="form-label">邮箱地址</label>
-        <input
-          id="emailAddress"
-          class="form-control"
-          type="email"
-          v-model="emailRef.value"
-          @blur="validateEmail"
-        />
-        <div
-          v-show="emailRef.error"
-          class="form-text"
-          v-text="emailRef.message"
-        />
-      </div>
+      <validate-input
+        name="emailAddress"
+        label="邮箱地址"
+        :rules="emailRules"
+      />
       <div class="mb-3">
         <label for="password" class="form-label">密码</label>
         <input
@@ -32,10 +22,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent } from "vue";
 import GlobalHeader, { UserProps } from "./components/GlobalHeader.vue";
 import { ColumnProps } from "./components/ColumnList.vue";
+import ValidateInput, { RuleProps } from "./components/ValidateInput.vue";
 
+const emailRules: RuleProps = [
+  { type: "required", message: "电子邮箱地址不能为空" },
+  { type: "email", message: "请输入正确的电子邮箱格式" }
+];
 const currentUser: UserProps = {
   id: 1,
   name: "Kisstar",
@@ -53,30 +48,12 @@ const testData: ColumnProps[] = Array(5)
 export default defineComponent({
   name: "App",
   components: {
-    GlobalHeader
+    GlobalHeader,
+    ValidateInput
   },
   setup() {
-    const rEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const emailRef = reactive({
-      value: "",
-      message: "",
-      error: false
-    });
-    const validateEmail = () => {
-      const value = emailRef.value;
-
-      if (!value.trim()) {
-        emailRef.error = true;
-        emailRef.message = "电子邮箱地址不能为空";
-      } else if (!rEmail.test(value)) {
-        emailRef.error = true;
-        emailRef.message = "请输入正确的电子邮箱格式";
-      }
-    };
-
     return {
-      emailRef,
-      validateEmail,
+      emailRules,
       currentUser,
       list: testData
     };
