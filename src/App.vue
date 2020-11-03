@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <global-header :user="currentUser" />
-    <form>
+    <validate-form @submit="onSubmit">
       <validate-input
         name="emailAddress"
         label="邮箱地址"
@@ -15,11 +15,11 @@
         label="密码"
         type="password"
         placeholder="请输入密码"
+        autocomplete
         :rules="passwordRules"
         v-model="passwordValue"
       />
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </validate-form>
   </div>
 </template>
 
@@ -27,6 +27,7 @@
 import { defineComponent, ref } from "vue";
 import GlobalHeader, { UserProps } from "./components/GlobalHeader.vue";
 import { ColumnProps } from "./components/ColumnList.vue";
+import ValidateForm from "./components/ValidateForm.vue";
 import ValidateInput, { RuleProps } from "./components/ValidateInput.vue";
 
 const emailRules: RuleProps = [
@@ -54,17 +55,22 @@ export default defineComponent({
   name: "App",
   components: {
     GlobalHeader,
+    ValidateForm,
     ValidateInput
   },
   setup() {
     const emailValue = ref("");
     const passwordValue = ref("");
+    const onSubmit = (isPassed: boolean) => {
+      console.log("result", isPassed);
+    };
 
     return {
       emailValue,
       emailRules,
       passwordValue,
       passwordRules,
+      onSubmit,
       currentUser,
       list: testData
     };
