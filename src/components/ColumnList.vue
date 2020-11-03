@@ -15,7 +15,12 @@
             class="card-text text-left text-secondary"
             v-text="column.description"
           ></p>
-          <a class="btn btn-outline-primary" href="#">进入专栏</a>
+          <router-link
+            class="btn btn-outline-primary"
+            :to="`/column/${column.id}`"
+          >
+            进入专栏
+          </router-link>
         </div>
       </div>
     </div>

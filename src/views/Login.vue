@@ -24,6 +24,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { useRouter } from "vue-router";
 import ValidateForm from "../components/ValidateForm.vue";
 import ValidateInput, { RuleProps } from "../components/ValidateInput.vue";
 
@@ -42,10 +43,15 @@ export default defineComponent({
     ValidateInput
   },
   setup() {
+    const router = useRouter();
     const emailValue = ref("");
     const passwordValue = ref("");
     const onSubmit = (isPassed: boolean) => {
-      console.log("result", isPassed);
+      console.log(isPassed);
+
+      if (isPassed) {
+        router.push({ name: "column", params: { id: 1 } });
+      }
     };
 
     return {

@@ -2,7 +2,7 @@
   <form>
     <slot></slot>
     <slot name="footer">
-      <button type="submit" class="btn btn-primary" @click="onSubmit">
+      <button type="submit" class="btn btn-primary" @click.prevent="onSubmit">
         提交
       </button>
     </slot>
