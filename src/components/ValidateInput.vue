@@ -78,7 +78,7 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      formEmitter.emit("form-item-created", 33);
+      formEmitter.emit("form-item-created", validator);
     });
 
     return {

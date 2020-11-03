@@ -13,21 +13,28 @@
 import { defineComponent, onUnmounted } from "vue";
 import { getEmitter } from "@/lib/mitt";
 
+export interface ValidateFunction {
+  (): boolean;
+}
+
 export const formEmitter = getEmitter();
 
 export default defineComponent({
   name: "ValidateForm",
   setup(props, context) {
+    const vlidators: ValidateFunction[] = [];
     const onSubmit = () => {
-      context.emit("submit", true);
+      const result = vlidators.map(vlidator => vlidator()).every(Boolean);
+      context.emit("submit", result);
     };
-    const onFormItemCreated = (test?: string) => {
-      console.log(test);
+    const onFormItemCreated = (validator?: ValidateFunction) => {
+      validator && vlidators.push(validator);
     };
 
     formEmitter.on("form-item-created", onFormItemCreated);
     onUnmounted(() => {
       formEmitter.off("form-item-created", onFormItemCreated);
+      vlidators.length = 0;
     });
 
     return {
