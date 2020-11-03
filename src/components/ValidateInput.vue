@@ -5,7 +5,7 @@
       :id="name"
       class="form-control"
       :class="{ 'is-invalid': inputRef.error }"
-      type="email"
+      v-bind="$attrs"
       :value="inputRef.value"
       @input="updateValue"
       @blur="validator"
@@ -45,6 +45,7 @@ export default defineComponent({
       default: []
     }
   },
+  inheritAttrs: false,
   setup(props, context) {
     const rEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const inputRef = reactive({

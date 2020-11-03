@@ -5,18 +5,19 @@
       <validate-input
         name="emailAddress"
         label="邮箱地址"
+        type="email"
+        placeholder="请输入邮箱地址"
         :rules="emailRules"
         v-model="emailValue"
       />
-      <div class="mb-3">
-        <label for="password" class="form-label">密码</label>
-        <input
-          id="password"
-          class="form-control"
-          type="password"
-          autocomplete
-        />
-      </div>
+      <validate-input
+        name="password"
+        label="密码"
+        type="password"
+        placeholder="请输入密码"
+        :rules="passwordRules"
+        v-model="passwordValue"
+      />
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
@@ -31,6 +32,9 @@ import ValidateInput, { RuleProps } from "./components/ValidateInput.vue";
 const emailRules: RuleProps = [
   { type: "required", message: "电子邮箱地址不能为空" },
   { type: "email", message: "请输入正确的电子邮箱格式" }
+];
+const passwordRules: RuleProps = [
+  { type: "required", message: "密码不能为空" }
 ];
 const currentUser: UserProps = {
   id: 1,
@@ -54,10 +58,13 @@ export default defineComponent({
   },
   setup() {
     const emailValue = ref("");
+    const passwordValue = ref("");
 
     return {
       emailValue,
       emailRules,
+      passwordValue,
+      passwordRules,
       currentUser,
       list: testData
     };
