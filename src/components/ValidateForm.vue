@@ -10,7 +10,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onUnmounted } from "vue";
+import { getEmitter } from "@/lib/mitt";
+
+export const formEmitter = getEmitter();
 
 export default defineComponent({
   name: "ValidateForm",
@@ -18,6 +21,14 @@ export default defineComponent({
     const onSubmit = () => {
       context.emit("submit", true);
     };
+    const onFormItemCreated = (test?: string) => {
+      console.log(test);
+    };
+
+    formEmitter.on("form-item-created", onFormItemCreated);
+    onUnmounted(() => {
+      formEmitter.off("form-item-created", onFormItemCreated);
+    });
 
     return {
       onSubmit
