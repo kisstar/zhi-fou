@@ -6,7 +6,8 @@
       class="form-control"
       :class="{ 'is-invalid': inputRef.error }"
       type="email"
-      v-model="inputRef.value"
+      :value="inputRef.value"
+      @input="updateValue"
       @blur="validator"
     />
     <div
@@ -38,18 +39,23 @@ export default defineComponent({
       type: String,
       required: true
     },
+    modelValue: String,
     rules: {
       type: Array as PropType<RuleProps>,
       default: []
     }
   },
-  setup(props) {
+  setup(props, context) {
     const rEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const inputRef = reactive({
-      value: "",
+      value: props.modelValue || "",
       message: "",
       error: false
     });
+    const updateValue = (event: KeyboardEvent) => {
+      const newValue = (inputRef.value = (event.target as HTMLInputElement).value);
+      context.emit("update:modelValue", newValue);
+    };
     const validator = () => {
       const value = inputRef.value;
       const isPassed = props.rules.every(rule => {
@@ -71,6 +77,7 @@ export default defineComponent({
 
     return {
       inputRef,
+      updateValue,
       validator
     };
   }

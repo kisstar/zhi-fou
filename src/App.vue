@@ -6,6 +6,7 @@
         name="emailAddress"
         label="邮箱地址"
         :rules="emailRules"
+        v-model="emailValue"
       />
       <div class="mb-3">
         <label for="password" class="form-label">密码</label>
@@ -22,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import GlobalHeader, { UserProps } from "./components/GlobalHeader.vue";
 import { ColumnProps } from "./components/ColumnList.vue";
 import ValidateInput, { RuleProps } from "./components/ValidateInput.vue";
@@ -52,7 +53,10 @@ export default defineComponent({
     ValidateInput
   },
   setup() {
+    const emailValue = ref("");
+
     return {
+      emailValue,
       emailRules,
       currentUser,
       list: testData
