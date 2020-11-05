@@ -2,6 +2,17 @@
   <div class="mb-3">
     <label :for="name" class="form-label" v-text="label" />
     <input
+      v-if="tag !== 'textarea'"
+      :id="name"
+      class="form-control"
+      :class="{ 'is-invalid': inputRef.error }"
+      v-bind="$attrs"
+      :value="inputRef.value"
+      @input="updateValue"
+      @blur="validator"
+    />
+    <textarea
+      v-else
       :id="name"
       class="form-control"
       :class="{ 'is-invalid': inputRef.error }"
@@ -21,7 +32,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, PropType, reactive } from "vue";
 import { formEmitter } from "./ValidateForm.vue";
-import { RuleInfo } from "@/types/interface";
+import { RuleInfo, TagType } from "@/types/interface";
 
 export default defineComponent({
   name: "ValidateInput",
@@ -38,6 +49,10 @@ export default defineComponent({
     rules: {
       type: Array as PropType<RuleInfo[]>,
       default: []
+    },
+    tag: {
+      type: String as PropType<TagType>,
+      default: "input"
     }
   },
   inheritAttrs: false,

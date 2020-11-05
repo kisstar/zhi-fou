@@ -1,6 +1,7 @@
 export interface UserProps {
   id?: number;
   name?: string;
+  columnId?: number;
   isLogin: boolean;
 }
 
@@ -28,6 +29,8 @@ export interface RuleInfo {
   type: "required" | "email";
   message: string;
 }
+
+export type TagType = "input" | "textarea";
 
 export interface AppState {
   user: UserProps;
