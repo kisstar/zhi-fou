@@ -3,7 +3,7 @@ import Login from "@/views/Login.vue";
 import ColumnDetail from "@/views/ColumnDetail.vue";
 import CreatePost from "@/views/CreatePost.vue";
 
-export default [
+const routes = [
   {
     path: "/",
     name: "home",
@@ -12,7 +12,10 @@ export default [
   {
     path: "/login",
     name: "login",
-    component: Login
+    component: Login,
+    meta: {
+      redirectAlreadyLogin: true
+    }
   },
   {
     path: "/column/:id",
@@ -22,6 +25,11 @@ export default [
   {
     path: "/create",
     name: "create",
-    component: CreatePost
+    component: CreatePost,
+    meta: {
+      requiredLogin: true
+    }
   }
 ];
+
+export default routes;
