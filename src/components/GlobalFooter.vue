@@ -4,9 +4,7 @@
       <ul class="list-inline mb-0">
         <li class="list-inline-item">© 2020 知乎专栏</li>
         <li class="list-inline-item">
-          <a href="https://www.cnblogs.com/dongwanhong/" target="_blank"
-            >Kisstar</a
-          >
+          <a href="https://kisstar.xyz/" target="_blank">Kisstar</a>
         </li>
         <li class="list-inline-item">
           <a href="https://github.com/kisstar/" target="_blank">GitHub</a>

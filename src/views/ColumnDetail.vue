@@ -43,6 +43,8 @@ export default defineComponent({
       store.getters.getPostByCid(currentColumn.value.id)
     );
 
+    store.dispatch("getPosts", currentId);
+
     return {
       column: currentColumn,
       list

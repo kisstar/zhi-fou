@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
-import { columnList, postList } from "../views/dataSource";
 import mutations from "./mutations";
+import actions from "./actions";
 import { AppState } from "@/types/interface";
 
 const store = createStore<AppState>({
@@ -8,8 +8,8 @@ const store = createStore<AppState>({
     user: {
       isLogin: false
     },
-    columnList,
-    postList
+    columnList: [],
+    postList: []
   },
   getters: {
     getColumnById(state) {
@@ -20,7 +20,8 @@ const store = createStore<AppState>({
         state.postList.filter(item => item.columnId === Cid);
     }
   },
-  mutations
+  mutations,
+  actions
 });
 
 export default store;

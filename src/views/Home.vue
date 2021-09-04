@@ -38,6 +38,8 @@ export default defineComponent({
     const store = useStore<AppState>();
     const columnList = computed(() => store.state.columnList);
 
+    store.dispatch("getColumns");
+
     return { list: columnList };
   }
 });
