@@ -37,4 +37,5 @@ export interface AppState {
   columnList: ColumnProps[];
   currentColumn: ColumnProps | null;
   postList: PostInfo[];
+  loading: boolean;
 }

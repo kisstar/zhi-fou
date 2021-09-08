@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid d-flex flex-column px-0">
     <global-header :user="currentUser" />
+    <h1 v-if="isLoading">Loading</h1>
     <router-view />
     <global-footer />
   </div>
@@ -22,9 +23,11 @@ export default defineComponent({
   setup() {
     const store = useStore<AppState>();
     const currentUser = computed(() => store.state.user);
+    const isLoading = computed(() => store.state.loading);
 
     return {
-      currentUser
+      currentUser,
+      isLoading
     };
   }
 });

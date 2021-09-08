@@ -5,6 +5,8 @@ import { AppState } from "@/types/interface";
 
 const store = createStore<AppState>({
   state: {
+    // 当前是否有接口在加载
+    loading: false,
     // 用户信息
     user: {
       isLogin: false
