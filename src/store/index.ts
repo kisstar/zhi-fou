@@ -5,21 +5,15 @@ import { AppState } from "@/types/interface";
 
 const store = createStore<AppState>({
   state: {
+    // 用户信息
     user: {
       isLogin: false
     },
-    columnList: [],
-    postList: []
+    columnList: [], // 专栏列表
+    currentColumn: null, // 当前显示的专栏
+    postList: [] // 当前专栏对应的文章列表
   },
-  getters: {
-    getColumnById(state) {
-      return (id: number) => state.columnList.find(item => item.id === id);
-    },
-    getPostByCid(state) {
-      return (Cid: number) =>
-        state.postList.filter(item => item.columnId === Cid);
-    }
-  },
+  getters: {},
   mutations,
   actions
 });

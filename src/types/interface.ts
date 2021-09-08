@@ -35,5 +35,6 @@ export type TagType = "input" | "textarea";
 export interface AppState {
   user: UserProps;
   columnList: ColumnProps[];
+  currentColumn: ColumnProps | null;
   postList: PostInfo[];
 }

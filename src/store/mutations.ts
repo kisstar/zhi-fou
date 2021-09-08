@@ -7,6 +7,9 @@ export default {
   setColumns(state: AppState, newColumnList: ColumnProps[]) {
     state.columnList = newColumnList;
   },
+  setCurrentColumn(state: AppState, newCurrentColumn: ColumnProps) {
+    state.currentColumn = newCurrentColumn;
+  },
   setPosts(state: AppState, newPostList: PostInfo[]) {
     state.postList = newPostList;
   },

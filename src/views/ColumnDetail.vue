@@ -1,9 +1,6 @@
 <template>
-  <div class="column-detail-page w-75 mx-auto">
-    <div
-      class="column-info row mb-4 border-bottom pb-4 align-items-center"
-      v-if="column"
-    >
+  <div class="column-detail-page w-50 mx-auto">
+    <div class="column-info row mb-4 pb-4 align-items-center" v-if="column">
       <div class="col-3 text-center">
         <img
           :src="column.avatar"
@@ -35,14 +32,11 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const store = useStore<AppState>();
-    const currentId = +route.params.id;
-    const currentColumn = computed(() =>
-      store.getters.getColumnById(currentId)
-    );
-    const list = computed(() =>
-      store.getters.getPostByCid(currentColumn.value.id)
-    );
+    const currentId = +route.params.id; // 专栏的 ID 标识
+    const currentColumn = computed(() => store.state.currentColumn);
+    const list = computed(() => store.state.postList);
 
+    store.dispatch("getColumn", currentId);
     store.dispatch("getPosts", currentId);
 
     return {

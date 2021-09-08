@@ -9,6 +9,15 @@ export const getColumns = () => {
 };
 
 /**
+ * 获取指定专栏
+ * @param {number} cid 专栏 ID 标识
+ * @returns {ColumnProps}
+ */
+export const getColumn = (cid: number) => {
+  return request.get(`/columns/${cid}`);
+};
+
+/**
  * 获取指定专栏下的文章列表
  * @param {number} cid 专栏 ID 标识
  * @returns {PostInfo[]}
