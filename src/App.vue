@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid d-flex flex-column px-0">
     <global-header :user="currentUser" />
-    <h1 v-if="isLoading">Loading</h1>
+    <loader v-if="isLoading">Loading</loader>
     <router-view />
     <global-footer />
   </div>
@@ -12,13 +12,15 @@ import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
 import GlobalHeader from "./components/GlobalHeader.vue";
 import GlobalFooter from "./components/GlobalFooter.vue";
+import Loader from "./components/Loader.vue";
 import { AppState } from "@/types/interface";
 
 export default defineComponent({
   name: "App",
   components: {
     GlobalHeader,
-    GlobalFooter
+    GlobalFooter,
+    Loader
   },
   setup() {
     const store = useStore<AppState>();
