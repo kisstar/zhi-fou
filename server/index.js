@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 
+const useMiddlewares = require("./middlewares");
+
 const mockDir = path.resolve(__dirname);
 // 路由映射：{ post: { '/a/b/c': [Function], '/d/e': [Function] } }
 const handlerMap = Object.create(null);
@@ -40,6 +42,10 @@ fs.readdirSync(mockDir).forEach(dirname => {
 });
 
 module.exports = app => {
+  // 添加中间件
+  useMiddlewares(app);
+
+  // 添加路由
   Object.keys(handlerMap).forEach(method => {
     const routes = handlerMap[method];
 
