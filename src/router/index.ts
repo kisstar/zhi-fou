@@ -10,11 +10,17 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const { isLogin } = store.state.user;
-  const { requiredLogin, redirectAlreadyLogin } = to.meta;
+  const { meta, path } = to;
+  const { requiredLogin, redirectAlreadyLogin } = meta;
 
   if (!isLogin) {
     if (requiredLogin) {
-      next({ name: "login" });
+      next({
+        name: "login",
+        params: {
+          path
+        }
+      });
     } else {
       next();
     }

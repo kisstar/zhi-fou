@@ -24,7 +24,6 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import ValidateForm from "../components/ValidateForm.vue";
 import ValidateInput from "../components/ValidateInput.vue";
@@ -45,15 +44,18 @@ export default defineComponent({
     ValidateInput
   },
   setup() {
-    const router = useRouter();
     const store = useStore();
     const emailValue = ref("");
     const passwordValue = ref("");
     const onSubmit = (isPassed: boolean) => {
-      if (isPassed) {
-        store.commit("login");
-        router.push("/");
+      if (!isPassed) {
+        return;
       }
+
+      store.dispatch("login", {
+        email: emailValue.value,
+        password: passwordValue.value
+      });
     };
 
     return {

@@ -33,6 +33,7 @@ export interface RuleInfo {
 export type TagType = "input" | "textarea";
 
 export interface AppState {
+  token: string;
   user: UserProps;
   columnList: ColumnProps[];
   currentColumn: ColumnProps | null;

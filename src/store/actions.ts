@@ -1,8 +1,19 @@
 import { ActionContext } from "vuex";
-import { getColumn, getColumns, getPosts } from "@/api/columns";
+import { login, getColumn, getColumns, getPosts } from "@/api/";
 import { AppState } from "@/types/interface";
+import { LoginParams } from "@/api/interface";
 
 export default {
+  // 登录
+  async login(
+    { commit }: ActionContext<AppState, AppState>,
+    padyload: LoginParams
+  ) {
+    const { data } = await login(padyload);
+    const { data: token } = data;
+
+    commit("login", token);
+  },
   // 获取专栏列表
   async getColumns({ commit }: ActionContext<AppState, AppState>) {
     const { data } = await getColumns();
