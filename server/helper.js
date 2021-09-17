@@ -49,3 +49,22 @@ exports.generatePosts = num => {
       columnId: getRndInteger(1, 5)
     }));
 };
+
+/**
+ * 生成指定个数的随机字符串
+ * @param {number} length 个数
+ * @returns
+ */
+exports.randomString = length => {
+  const originString = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678";
+  const maxLength = originString.length;
+  let result = "";
+
+  length = length || 32;
+
+  for (let i = 0; i < length; i++) {
+    result += originString.charAt(Math.floor(Math.random() * maxLength));
+  }
+
+  return result;
+};

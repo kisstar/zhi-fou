@@ -1,4 +1,4 @@
-const { userStore } = require("../store");
+const { userStore, userMap, createUser } = require("../store");
 const { NO_ERROR, PASSWORD_ERROR } = require("../config/error-code");
 
 module.exports = (req, res) => {
@@ -14,8 +14,12 @@ module.exports = (req, res) => {
     return;
   }
 
+  const { userID } = req;
+  // 获取或创建用户信息
+  const userInfo = userMap[userID] || createUser(email);
+
   res.json({
     code: NO_ERROR,
-    data: Date.now()
+    data: Date.now() + "" + userInfo.id
   });
 };
