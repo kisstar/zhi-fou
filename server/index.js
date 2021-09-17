@@ -27,7 +27,7 @@ fs.readdirSync(mockDir).forEach(dirname => {
   const dirTarget = path.resolve(mockDir, dirname);
 
   // 只处理特定的请求方法
-  if (!["get", "post"].includes(dirname)) {
+  if (!["all", "get", "post"].includes(dirname)) {
     return;
   }
 

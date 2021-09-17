@@ -1,4 +1,5 @@
 const { userStore } = require("../store");
+const { NO_ERROR, PASSWORD_ERROR } = require("../config/error-code");
 
 module.exports = (req, res) => {
   const { email, password } = req.body;
@@ -7,14 +8,14 @@ module.exports = (req, res) => {
   if (!userStore[email] || userStore[email] !== password) {
     res.status(403);
     res.json({
-      code: 403,
+      code: PASSWORD_ERROR,
       message: "用户或密码错误"
     });
     return;
   }
 
   res.json({
-    code: 200,
+    code: NO_ERROR,
     data: Date.now()
   });
 };
