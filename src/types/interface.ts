@@ -46,6 +46,8 @@ export interface LoginParams {
   [propertyName: string]: string;
 }
 
+export type MessageType = "success" | "error" | "default";
+
 export interface AppState {
   token: string;
   user: UserProps;
