@@ -1,3 +1,8 @@
+export interface ErrorProps {
+  status: boolean;
+  message?: string;
+}
+
 export interface UserProps {
   isLogin: boolean;
   id?: number;
@@ -37,6 +42,7 @@ export type TagType = "input" | "textarea";
 export interface AppState {
   token: string;
   user: UserProps;
+  error: ErrorProps;
   columnList: ColumnProps[];
   currentColumn: ColumnProps | null;
   postList: PostInfo[];

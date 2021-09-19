@@ -1,8 +1,18 @@
 import router from "@/router";
 import request from "@/api";
-import { AppState, PostInfo, ColumnProps, UserProps } from "@/types/interface";
+import {
+  AppState,
+  PostInfo,
+  ColumnProps,
+  UserProps,
+  ErrorProps
+} from "@/types/interface";
 
 export default {
+  // 设置错误信息
+  setError(state: AppState, newError: ErrorProps) {
+    state.error = newError;
+  },
   // 获取凭证
   login(state: AppState, newToken: string) {
     const { path } = router.currentRoute.value.params;

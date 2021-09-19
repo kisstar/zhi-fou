@@ -7,6 +7,10 @@ const token = localStorage.getItem("token") || "";
 
 const store = createStore<AppState>({
   state: {
+    // 错误信息
+    error: {
+      status: false
+    },
     // 登录凭证
     token,
     // 当前是否有接口在加载
