@@ -25,7 +25,9 @@
               </router-link>
             </dropdown-item>
             <dropdown-item :disabled="true">编辑资料</dropdown-item>
-            <dropdown-item>退出登陆</dropdown-item>
+            <dropdown-item>
+              <span @click="logout">退出登陆</span>
+            </dropdown-item>
           </dropdown>
         </a>
       </li>
@@ -38,6 +40,7 @@ import { defineComponent, PropType } from "vue";
 import Dropdown from "./Dropdown.vue";
 import DropdownItem from "./DropdownItem.vue";
 import { UserProps } from "@/types/interface";
+import store from "@/store";
 
 export default defineComponent({
   name: "GlobalHeader",
@@ -50,6 +53,13 @@ export default defineComponent({
       type: Object as PropType<UserProps>,
       required: true
     }
+  },
+  setup() {
+    const logout = () => store.commit("logout");
+
+    return {
+      logout
+    };
   }
 });
 </script>

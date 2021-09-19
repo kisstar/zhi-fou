@@ -23,6 +23,10 @@ export default {
     request.defaults.headers.common.Authorization = `Bearer ${newToken}`;
     router.push(typeof path == "string" ? path : "/");
   },
+  logout(state: AppState) {
+    state.user.isLogin = false;
+    localStorage.removeItem("token");
+  },
   // 设置用户信息
   setUserInfo(state: AppState, newUserInfo: Omit<UserProps, "isLogin">) {
     state.user = { ...state.user, ...newUserInfo };

@@ -2,6 +2,8 @@ const { randomString } = require("./helper");
 
 // 用户唯一标识
 let uid = 0;
+// 专栏唯一标识
+let columnId = 0;
 
 // 用户信息映射表
 const userMap = (exports.userMap = Object.create(null));
@@ -16,6 +18,7 @@ Object.assign(userStore, {
 exports.createUser = email => {
   const userInfo = {
     id: uid,
+    columnId: columnId++,
     avatar: "https://thiscatdoesnotexist.com/",
     email,
     nickName: randomString(6),

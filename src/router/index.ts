@@ -9,30 +9,33 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const { isLogin } = store.state.user;
+  const { user } = store.state;
+  const { isLogin, id } = user;
   const { meta, path } = to;
   const { requiredLogin, redirectAlreadyLogin } = meta;
 
-  if (!isLogin) {
-    if (requiredLogin) {
-      next({
-        name: "login",
-        params: {
-          path
-        }
+  if (isLogin) {
+    redirectAlreadyLogin ? next({ name: "/" }) : next();
+    // 本地存在登录态，但不存在用户信息时自动获取用户信息
+    !id &&
+      store.dispatch("getUserInfo").catch(() => {
+        store.commit("logout");
       });
-    } else {
-      next();
-    }
-
     return;
   }
 
-  if (redirectAlreadyLogin) {
-    next({ name: "/" });
-  } else {
+  if (!requiredLogin) {
     next();
+    return;
   }
+
+  store.commit("logout");
+  next({
+    name: "login",
+    params: {
+      path
+    }
+  });
 });
 
 export default router;

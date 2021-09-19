@@ -6,6 +6,7 @@ export interface ErrorProps {
 export interface UserProps {
   isLogin: boolean;
   id?: number;
+  columnId?: number;
   nickName?: string;
   avatar?: string;
   des?: string;
