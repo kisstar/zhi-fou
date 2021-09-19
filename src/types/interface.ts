@@ -1,8 +1,10 @@
 export interface UserProps {
-  id?: number;
-  name?: string;
-  columnId?: number;
   isLogin: boolean;
+  id?: number;
+  nickName?: string;
+  avatar?: string;
+  des?: string;
+  email?: string;
 }
 
 export interface ColumnProps {

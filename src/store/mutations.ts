@@ -1,6 +1,6 @@
 import router from "@/router";
 import request from "@/api";
-import { AppState, PostInfo, ColumnProps } from "@/types/interface";
+import { AppState, PostInfo, ColumnProps, UserProps } from "@/types/interface";
 
 export default {
   // 获取凭证
@@ -12,6 +12,10 @@ export default {
     localStorage.setItem("token", newToken);
     request.defaults.headers.common.Authorization = `Bearer ${newToken}`;
     router.push(typeof path == "string" ? path : "/");
+  },
+  // 设置用户信息
+  setUserInfo(state: AppState, newUserInfo: Omit<UserProps, "isLogin">) {
+    state.user = { ...state.user, ...newUserInfo };
   },
   // 设置当前专栏列表
   setColumns(state: AppState, newColumnList: ColumnProps[]) {

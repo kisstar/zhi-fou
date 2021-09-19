@@ -1,5 +1,5 @@
 import { ActionContext } from "vuex";
-import { login, getColumn, getColumns, getPosts } from "@/api/";
+import { login, getColumn, getColumns, getPosts, getUserInfo } from "@/api";
 import { AppState } from "@/types/interface";
 import { LoginParams } from "@/api/interface";
 
@@ -13,6 +13,13 @@ export default {
     const { data: token } = data;
 
     commit("login", token);
+  },
+  // 获取用户信息
+  async getUserInfo({ commit }: ActionContext<AppState, AppState>) {
+    const { data } = await getUserInfo();
+    const { data: userInfo } = data;
+
+    commit("setUserInfo", userInfo);
   },
   // 获取专栏列表
   async getColumns({ commit }: ActionContext<AppState, AppState>) {

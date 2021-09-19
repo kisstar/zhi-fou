@@ -18,7 +18,7 @@
     <ul v-else class="list-inline mb-0">
       <li class="list-inline-item">
         <a href="#" class="btn btn-outline-light my-2">
-          <dropdown :title="`您好，${user.name}`">
+          <dropdown :title="`您好，${user.nickName}`">
             <dropdown-item>
               <router-link to="/create">
                 新建文章

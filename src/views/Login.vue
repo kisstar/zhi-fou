@@ -52,10 +52,14 @@ export default defineComponent({
         return;
       }
 
-      store.dispatch("login", {
-        email: emailValue.value,
-        password: passwordValue.value
-      });
+      store
+        .dispatch("login", {
+          email: emailValue.value,
+          password: passwordValue.value
+        })
+        .then(() => {
+          store.dispatch("getUserInfo");
+        });
     };
 
     return {
