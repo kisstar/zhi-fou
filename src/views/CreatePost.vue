@@ -26,8 +26,8 @@
 import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import ValidateForm from "../components/ValidateForm.vue";
-import ValidateInput from "../components/ValidateInput.vue";
+import ValidateForm from "../components/form/ValidateForm.vue";
+import ValidateInput from "../components/form/ValidateInput.vue";
 import { AppState, RuleInfo, PostInfo } from "@/types/interface";
 
 export default defineComponent({

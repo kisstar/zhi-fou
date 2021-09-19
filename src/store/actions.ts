@@ -1,7 +1,7 @@
 import { ActionContext } from "vuex";
 import { login, getColumn, getColumns, getPosts, getUserInfo } from "@/api";
 import { AppState } from "@/types/interface";
-import { LoginParams } from "@/api/interface";
+import { LoginParams } from "@/types/interface";
 
 export default {
   // 登录

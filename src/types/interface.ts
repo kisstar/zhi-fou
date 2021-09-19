@@ -40,6 +40,12 @@ export interface RuleInfo {
 
 export type TagType = "input" | "textarea";
 
+export interface LoginParams {
+  email: string;
+  password: string;
+  [propertyName: string]: string;
+}
+
 export interface AppState {
   token: string;
   user: UserProps;

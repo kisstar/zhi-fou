@@ -25,8 +25,8 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
-import ValidateForm from "../components/ValidateForm.vue";
-import ValidateInput from "../components/ValidateInput.vue";
+import ValidateForm from "../components/form/ValidateForm.vue";
+import ValidateInput from "../components/form/ValidateInput.vue";
 import { RuleInfo } from "@/types/interface";
 
 const emailRules: RuleInfo[] = [

@@ -37,8 +37,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import Dropdown from "./Dropdown.vue";
-import DropdownItem from "./DropdownItem.vue";
+import Dropdown from "./dropdown/Dropdown.vue";
+import DropdownItem from "./dropdown/DropdownItem.vue";
 import { UserProps } from "@/types/interface";
 import store from "@/store";
 

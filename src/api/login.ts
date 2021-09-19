@@ -1,5 +1,5 @@
 import request from "./request";
-import { LoginParams } from "./interface";
+import { LoginParams } from "@/types/interface";
 
 /**
  * 用户登录
