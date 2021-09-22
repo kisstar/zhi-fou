@@ -1,5 +1,5 @@
 <template>
-  <div class="login-page">
+  <div class="login-page m-auto">
     <validate-form @submit="onSubmit">
       <validate-input
         name="emailAddress"
@@ -72,3 +72,10 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss">
+.login-page {
+  width: 80%;
+  max-width: 350px;
+}
+</style>

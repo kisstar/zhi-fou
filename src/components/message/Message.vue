@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, ref } from "vue";
-import useDOMCreate from "../hooks/useDOMCreate";
+import useDOMCreate from "@/hooks/useDOMCreate";
 import { MessageType } from "@/types/interface";
 
 export default defineComponent({

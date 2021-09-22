@@ -8,12 +8,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, watch } from "vue";
 import { useStore } from "vuex";
 import GlobalHeader from "./components/GlobalHeader.vue";
 import GlobalFooter from "./components/GlobalFooter.vue";
 import Loader from "./components/Loader.vue";
 import { AppState } from "@/types/interface";
+import message from "./components/message/message";
 
 export default defineComponent({
   name: "App",
@@ -26,6 +27,16 @@ export default defineComponent({
     const store = useStore<AppState>();
     const currentUser = computed(() => store.state.user);
     const isLoading = computed(() => store.state.loading);
+    const error = computed(() => store.state.error);
+
+    watch(
+      () => error.value.status,
+      () => {
+        if (error.value.status && error.value.message) {
+          message.error({ message: error.value.message });
+        }
+      }
+    );
 
     return {
       currentUser,

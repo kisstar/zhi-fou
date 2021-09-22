@@ -48,6 +48,12 @@ export interface LoginParams {
 
 export type MessageType = "success" | "error" | "default";
 
+export interface MessageInfo {
+  type: MessageType;
+  message: string;
+  timeout?: number;
+}
+
 export interface AppState {
   token: string;
   user: UserProps;
