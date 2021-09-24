@@ -16,7 +16,7 @@ module.exports = (req, res) => {
 
   const { userID } = req;
   // 获取或创建用户信息
-  const userInfo = userMap[userID] || createUser(email);
+  const userInfo = userMap[userID] || createUser({ email });
 
   res.json({
     code: NO_ERROR,
