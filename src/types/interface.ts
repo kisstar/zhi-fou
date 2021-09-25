@@ -34,8 +34,9 @@ export interface ValidateFunction {
 }
 
 export interface RuleInfo {
-  type: "required" | "email";
+  type: "required" | "email" | "custom";
   message: string;
+  validator?: () => boolean;
 }
 
 export type TagType = "input" | "textarea";
@@ -52,6 +53,13 @@ export interface MessageInfo {
   type: MessageType;
   message: string;
   timeout?: number;
+}
+
+export interface SignupParams {
+  email: string;
+  password: string;
+  nickName: string;
+  [propertyName: string]: string;
 }
 
 export interface AppState {

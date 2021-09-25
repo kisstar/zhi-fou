@@ -1,11 +1,13 @@
 <template>
   <form>
     <slot></slot>
-    <slot name="footer">
-      <button type="submit" class="btn btn-primary" @click.prevent="onSubmit">
-        提交
-      </button>
-    </slot>
+    <div class="submit-area" @click.prevent="onSubmit">
+      <slot name="footer">
+        <button type="button" class="btn btn-primary">
+          提交
+        </button>
+      </slot>
+    </div>
   </form>
 </template>
 

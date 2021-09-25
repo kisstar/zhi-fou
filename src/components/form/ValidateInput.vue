@@ -34,6 +34,8 @@ import { defineComponent, onMounted, PropType, reactive } from "vue";
 import { formEmitter } from "./ValidateForm.vue";
 import { RuleInfo, TagType } from "@/types/interface";
 
+const rEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 export default defineComponent({
   name: "ValidateInput",
   props: {
@@ -57,7 +59,6 @@ export default defineComponent({
   },
   inheritAttrs: false,
   setup(props, context) {
-    const rEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const inputRef = reactive({
       value: props.modelValue || "",
       message: "",
@@ -65,6 +66,7 @@ export default defineComponent({
     });
     const updateValue = (event: KeyboardEvent) => {
       const newValue = (inputRef.value = (event.target as HTMLInputElement).value);
+
       context.emit("update:modelValue", newValue);
     };
     const validator = () => {
@@ -77,12 +79,15 @@ export default defineComponent({
             return !!value.trim();
           case "email":
             return rEmail.test(value);
+          case "custom":
+            return rule.validator ? rule.validator() : true;
           default:
             return false;
         }
       });
 
       inputRef.error = !isPassed;
+
       return isPassed;
     };
 
